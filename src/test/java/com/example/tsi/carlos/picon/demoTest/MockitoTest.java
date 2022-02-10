@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)//Inehereting characteristic needed to use mockito
 public class MockitoTest {
-    private SakilaDatabaseApplicationTests sakilaDatabaseApplicationTests;
+    private SakilaDatabaseApplication sakilaDatabaseApplication;
     @Mock
     private AddressRepository addressRepository;
     @Mock
@@ -31,7 +31,7 @@ public class MockitoTest {
 
     @BeforeEach//creating an instance of our DB with no data
     void Setup(){
-        sakilaDatabaseApplicationTests = new SakilaDatabaseApplicationTests(addressRepository,
+        sakilaDatabaseApplication = new SakilaDatabaseApplication(addressRepository,
                 actorRepository,categoryRepository,
                 cityRepository, countryRepository, filmRepository, languageRepository);
     }
@@ -40,7 +40,7 @@ public class MockitoTest {
     public void testAddLanguage(){
         Language saveLanguage = new Language("Test Language");//Post request for Mock DB
         String expected = "save";//response
-        String actual = sakilaDatabaseApplicationTests.addLanguage(saveLanguage.getName());
+        String actual = sakilaDatabaseApplication.addLanguage(saveLanguage.getName());
         ArgumentCaptor<Language>languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
         //Verifying that repo has saved instance
         verify(languageRepository).save(languageArgumentCaptor.capture());
