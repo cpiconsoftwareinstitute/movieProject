@@ -3,8 +3,9 @@ package com.example.tsi.carlos.picon.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -25,6 +26,8 @@ public class SakilaDatabaseApplication {
 	private FilmRepository filmRepository;
 	@Autowired
 	private LanguageRepository languageRepository;
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	private String save ="save";
 
@@ -34,7 +37,8 @@ public class SakilaDatabaseApplication {
 									 CityRepository cityRepository,
 									 CountryRepository countryRepository,
 									 FilmRepository filmRepository,
-									 LanguageRepository languageRepository){
+									 LanguageRepository languageRepository,
+									 ReviewRepository reviewRepository){
 
 
 		this.addressRepository = addressRepository;
@@ -64,6 +68,19 @@ public class SakilaDatabaseApplication {
 
 		return actorRepository.findAll();
 	}
+	@PostMapping("/AddActors")
+	public @ResponseBody
+	String addActor(@RequestParam String first_name, String last_name){
+		Actor addActor = new Actor(first_name, last_name);
+		actorRepository.save(addActor);
+		return save;
+	}
+	@GetMapping("/OneActor/{actor_id}")
+	public @ResponseBody
+	Optional<Actor> getActorByID(@PathVariable int actor_id){
+
+		return actorRepository.findById(actor_id);
+	}
 	@PostMapping("/AddCategories")
 	public @ResponseBody
 	String addCategory(@RequestParam String name){
@@ -91,12 +108,53 @@ public class SakilaDatabaseApplication {
 		return countryRepository.findAll();
 	}
 
+	@GetMapping("/OneFilm/{film_id}")
+	public @ResponseBody
+	Optional<Film> getFilmByID(@PathVariable int film_id){
+
+		return filmRepository.findById(film_id);
+	}
+	@PostMapping("/AddFilms")
+	public @ResponseBody
+	String addFilm(@RequestParam String title, String description, int release_year,int language_id,
+				   int rental_duration, float rental_rate,/* int length,*/ float replacement_cost,
+				   String rating, String special_features){
+
+		Film addFilm = new Film(title, description, release_year, language_id, rental_duration,
+				rental_rate,/* length,*/ replacement_cost, rating, special_features);
+
+		filmRepository.save(addFilm);
+		return save;
+	}
 	@GetMapping("/AllFilms")
 	public @ResponseBody
 	Iterable<Film> getAllFilms(){
 
 		return filmRepository.findAll();
 	}
+	@GetMapping("/OneLanguage/{language_id}")
+	public @ResponseBody
+	Optional<Language> getLanguageByID(@PathVariable int language_id){
+
+		return languageRepository.findById(language_id);
+	}
+	/*@PutMapping("/UpdateLanguages/{language_id}")
+	public @ResponseBody
+	String updateLanguage(@PathVariable int language_id, @RequestParam String name) {
+		Optional<Language> updateLanguage= languageRepository.findById(language_id);
+		updateLanguage.setName(name);
+		return "Language updated";
+
+	}*/
+	@PutMapping("/UpdateLanguages/{language_id}")
+	public @ResponseBody
+	String updateLanguage(@PathVariable String name, int language_id){
+		Language newLanguage = new Language(name);
+		Optional<Language> updateLanguage =languageRepository.findById(language_id);
+		languageRepository.save(newLanguage);
+		return "Language updated";
+	}
+
 	@PostMapping("/AddLanguages")
 	public @ResponseBody
 	String addLanguage(@RequestParam String name){
@@ -109,7 +167,27 @@ public class SakilaDatabaseApplication {
 	public @ResponseBody
 	Iterable<Language> getAllLanguages(){
 
-        return languageRepository.findAll();
+		return languageRepository.findAll();
 	}
+	@DeleteMapping("/DeleteLanguages/{language_id}")
+	public @ResponseBody
+	String removeLanguage(@PathVariable int language_id){
+		languageRepository.deleteById(language_id);
+		return "The language was removed";
+	}
+	@PostMapping("/AddReviews")
+	public @ResponseBody
+	String addReview(@RequestParam String reviewcol, int film_film_id){
+		Review addReview = new Review(reviewcol, film_film_id);
+		reviewRepository.save(addReview);
+		return save;
+	}
+	@GetMapping("/AllReviews")
+	public @ResponseBody
+	Iterable<Review> getAllReview(){
+
+		return reviewRepository.findAll();
+	}
+
 
 	}

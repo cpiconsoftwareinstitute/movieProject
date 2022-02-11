@@ -16,7 +16,12 @@ public class LanguageTest {
         testName.setName("Spanish");
         assertEquals("Spanish", testName.getName(),
                 "The Expected result and the introduced data is not the same");
-
+    }
+    @Test
+        void getIDTest(){
+        Language testName = new Language();
+        assertEquals(0, testName.getLanguage_id(),
+                "The Expected ID and the introduced data is not the same");
     }
 
 }

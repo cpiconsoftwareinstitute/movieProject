@@ -27,13 +27,16 @@ public class MockitoTest {
     @Mock
     private FilmRepository filmRepository;
     @Mock
-    private LanguageRepository languageRepository; //Creating a fake version of
+    private LanguageRepository languageRepository;
+    @Mock
+    private ReviewRepository reviewRepository; //Creating a fake version of
 
     @BeforeEach//creating an instance of our DB with no data
     void Setup(){
         sakilaDatabaseApplication = new SakilaDatabaseApplication(addressRepository,
                 actorRepository,categoryRepository,
-                cityRepository, countryRepository, filmRepository, languageRepository);
+                cityRepository, countryRepository, filmRepository, languageRepository,
+                reviewRepository);
     }
 
     @Test
@@ -45,6 +48,30 @@ public class MockitoTest {
         //Verifying that repo has saved instance
         verify(languageRepository).save(languageArgumentCaptor.capture());
         languageArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+    /*
+    @Test
+    public void testOneLanguage(){
+        Language oneLanguage = new Language("Test Language");//Post request for Mock DB
+        String expected = oneLanguage.getName();//response
+        String actual = sakilaDatabaseApplication.oneLanguage(oneLanguage.getName());
+        ArgumentCaptor<Language>languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
+        //Verifying that repo has saved instance
+        verify(languageRepository).save(languageArgumentCaptor.capture());
+        languageArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+     */
+    @Test
+    public void testAddCategory(){
+        Category saveCategory = new Category("Test Category");//Post request for Mock DB
+        String expected = "save";//response
+        String actual = sakilaDatabaseApplication.addCategory(saveCategory.getName());
+        ArgumentCaptor<Category>categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        //Verifying that repo has saved instance
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
     }
 }

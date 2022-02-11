@@ -3,6 +3,7 @@ package com.example.tsi.carlos.picon.demo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 public class Actor{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int actor_id;
 
     private String first_name;
@@ -33,18 +34,16 @@ public class Actor{
     public int getActor_id() {
         return actor_id;
     }
-
-    /* Setter and Getter:  for ManyToMany*/
-
-    /*public void setActor(Set<Actor> actor) {
-        this.actor = actor;
+    /*
+    public Set<Film> getFilms()
+    {
+        return film;
     }
-    public Set<Actor> getActor() {
 
-        return actor;
+    public void setFilms(Set<Film> films)
+    {
+        this.film = film;
     }*/
-
-
     /* Setter and Getter:  first name*/
 
     public void setFirst_name(String first_name) {
