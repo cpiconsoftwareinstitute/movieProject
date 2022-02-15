@@ -146,14 +146,6 @@ public class SakilaDatabaseApplication {
 		return "Language updated";
 
 	}*/
-	@PutMapping("/UpdateLanguages/{language_id}")
-	public @ResponseBody
-	String updateLanguage(@PathVariable String name, int language_id){
-		Language newLanguage = new Language(name);
-		Optional<Language> updateLanguage =languageRepository.findById(language_id);
-		languageRepository.save(newLanguage);
-		return "Language updated";
-	}
 
 	@PostMapping("/AddLanguages")
 	public @ResponseBody
@@ -166,7 +158,6 @@ public class SakilaDatabaseApplication {
 	@GetMapping("/AllLanguages")
 	public @ResponseBody
 	Iterable<Language> getAllLanguages(){
-
 		return languageRepository.findAll();
 	}
 	@DeleteMapping("/DeleteLanguages/{language_id}")

@@ -52,17 +52,32 @@ public class MockitoTest {
     }
     /*
     @Test
+    public void testGetLanguage(){
+        Language getLanguage = new Language("Test Language");//Post request for Mock DB
+        Iterable<Language> testAllLanguages;
+        ArgumentCaptor<Language> languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
+        //Verifying that repo has saved instance
+        verify(languageRepository).save(languageArgumentCaptor.capture());
+        languageArgumentCaptor.getValue();
+
+        Assertions.assertEquals(languageRepository.findAll(), sakilaDatabaseApplication.getAllLanguages()
+                , "Data d=hasnt been added to mock");
+    }
+    */
+
+    /*
+    @Test
     public void testOneLanguage(){
-        Language oneLanguage = new Language("Test Language");//Post request for Mock DB
-        String expected = oneLanguage.getName();//response
+        Language addoneLanguage = new Language("Test Language");//Post request for Mock DB
+        String expected = addoneLanguage.getName();//response
         String actual = sakilaDatabaseApplication.oneLanguage(oneLanguage.getName());
         ArgumentCaptor<Language>languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
         //Verifying that repo has saved instance
         verify(languageRepository).save(languageArgumentCaptor.capture());
         languageArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
-    }
-     */
+    }*/
+
     @Test
     public void testAddCategory(){
         Category saveCategory = new Category("Test Category");//Post request for Mock DB
@@ -74,4 +89,5 @@ public class MockitoTest {
         categoryArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
     }
+
 }
