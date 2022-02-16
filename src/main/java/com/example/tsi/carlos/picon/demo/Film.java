@@ -65,7 +65,7 @@ public class Film{
         return film_id;
     }
 
-        public void setFilm(String title, String description, int release_year,int language_id,
+    public void setFilm(String title, String description, int release_year,int language_id,
                             int rental_duration, float rental_rate,/* int length,*/ float replacement_cost,
                             String rating, String special_features) {
         this.title = title;
