@@ -130,7 +130,7 @@
 			<configuration>
 				<archive>
 					<manifest>
-						<mainClass>fully.qualified.MainClass</mainClass>
+						<mainClass>com.example.tsi.carlos.picon.demo.SakilaDatabaseApplication</mainClass>
 					</manifest>
 				</archive>
 				<descriptorRefs>
