@@ -15,4 +15,11 @@ public class CategoryTest {
         assertEquals("Drama", testName.getName(),
                 "The Expected result and the introduced data is not the same");
     }
+
+    @Test
+    void getIDTest(){
+        Category testName = new Category();
+        assertEquals(0, testName.getCategory_id(),
+                "The Expected ID and the introduced data is not the same");
+    }
 }
