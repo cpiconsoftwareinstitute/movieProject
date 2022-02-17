@@ -2,11 +2,19 @@ package com.example.tsi.carlos.picon.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.regions.Region;
+
+
+
+import java.util.Base64;
+
 
 import java.util.Optional;
-
 @SpringBootApplication
 @RestController
 @RequestMapping("/Homepage")
@@ -114,15 +122,13 @@ public class SakilaDatabaseApplication {
 
 		return filmRepository.findById(film_id);
 	}
-	@PostMapping("/AddFilms")
-	public @ResponseBody
-	String addFilm(@RequestParam String title, String description, int release_year,int language_id,
-				   int rental_duration, float rental_rate,/* int length,*/ float replacement_cost,
-				   String rating, String special_features){
-
-		Film addFilm = new Film(title, description, release_year, language_id, rental_duration,
-				rental_rate,/* length,*/ replacement_cost, rating, special_features);
-
+	@PostMapping ("/AddFilm")
+	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
+										double rental_rate, int length, double replacement_cost, String rating,
+										String special_features){
+		Film addFilm = new Film(title, description, release_year, rental_duration,
+				rental_rate,length,replacement_cost, rating,
+				special_features);
 		filmRepository.save(addFilm);
 		return save;
 	}
