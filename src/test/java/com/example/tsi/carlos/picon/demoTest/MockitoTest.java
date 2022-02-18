@@ -9,7 +9,10 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)//Inehereting characteristic needed to use mockito
 public class MockitoTest {
@@ -50,6 +53,14 @@ public class MockitoTest {
         verify(languageRepository).save(languageArgumentCaptor.capture());
         languageArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+    @Test
+    public void testGetLanguageById(){
+        Language languageTest = new Language("English");
+        when(sakilaDatabaseApplication.getLanguageByID(1)).thenReturn(Optional.of(languageTest));
+        Assertions.assertEquals(Optional.of(languageTest),
+                sakilaDatabaseApplication.getLanguageByID(1),
+                "This Language Id getting test has failed");
     }
     /*
     @Test
