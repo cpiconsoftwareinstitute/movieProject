@@ -11,8 +11,12 @@ public class FilmTest {
     private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
             7, 15.20, 13, 13.5, "G",
             "Special scenes");
-
-
+    @Test
+    void getIDTest() {
+        Film testID = new Film();
+        assertEquals(0, testID.getFilm_id(),
+                "The Expected ID and the introduced data is not the same");
+    }
     @Test
     void setTitleTest(){
 
