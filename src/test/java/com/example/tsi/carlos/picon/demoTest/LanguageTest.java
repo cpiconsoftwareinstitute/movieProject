@@ -56,17 +56,4 @@ public class LanguageTest {
                "The Expected ID and the introduced data is not the same");
   }
 
-
- /*@Test
-   public void getGetMappingTest(){
-       Language testName1 = new Language("Spanish");
-       Language testName2 = new Language("Polish");
-       List<Language> languageList= new ArrayList<>();
-       languageList.add(testName1);
-      languageList.add(testName2);
-      when(sakilaDatabaseApplication.getAllLanguages()).thenReturn(languageList);
-        Assertions.assertEquals(languageList, sakilaDatabaseApplication.getAllLanguages(),
-
-              "The Expected list and the introduced data is not the same");
-   }*/
 }
