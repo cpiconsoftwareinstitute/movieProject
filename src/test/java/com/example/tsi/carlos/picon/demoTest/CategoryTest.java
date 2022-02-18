@@ -1,12 +1,14 @@
 package com.example.tsi.carlos.picon.demoTest;
 
 import com.example.tsi.carlos.picon.demo.Category;
-import com.example.tsi.carlos.picon.demo.Language;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CategoryTest {
+
+    private Category category = new Category("Drama");
 
     @Test
     void setNameTest() {

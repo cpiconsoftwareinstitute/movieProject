@@ -40,6 +40,7 @@ public class LanguageTest {
                 actorRepository,categoryRepository,
                 cityRepository, countryRepository, filmRepository, languageRepository);
     }
+    private Language language= new Language("Drama");
     @Test
     void setNameTest(){
         Language testName = new Language();
@@ -53,6 +54,13 @@ public class LanguageTest {
         assertEquals(0, testName.getLanguage_id(),
                "The Expected ID and the introduced data is not the same");
   }
+
+    /*@Test
+    public void testGetFilmById(){
+        Film testFilm = new Film("title", "description", 2022, 202, "rating", 3);
+        when(sakilaDatabaseApplication.getFilmByID(0)).thenReturn(Optional.of(testFilm));
+        Assertions.assertEquals(Optional.of(testFilm), sakilaDatabaseApplication.getFilmByID(0), "This Film Id getting test has failed");
+    }*/
  /*@Test
    public void getGetMappingTest(){
        Language testName1 = new Language("Spanish");
