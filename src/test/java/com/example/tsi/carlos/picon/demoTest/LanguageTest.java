@@ -50,8 +50,8 @@ public class LanguageTest {
     }
     @Test
     void getIDTest(){
-       Language testName = new Language();
-        assertEquals(0, testName.getLanguage_id(),
+       Language testID = new Language();
+        assertEquals(0, testID.getLanguage_id(),
                "The Expected ID and the introduced data is not the same");
   }
 

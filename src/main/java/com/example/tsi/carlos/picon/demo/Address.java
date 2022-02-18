@@ -23,7 +23,7 @@ public class Address{
         return address_id;
     }
 
-    public void setAddress(String A) {
+    public void setAddress(String address,String district) {
         this.address = address;
         this.district = district;
     }
