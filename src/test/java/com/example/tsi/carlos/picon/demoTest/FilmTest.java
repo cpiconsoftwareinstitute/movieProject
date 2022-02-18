@@ -8,6 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilmTest {
 
+    private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
+            7, 15.20, 13, 13.5, "G",
+            "Special scenes");
+
+
     @Test
     void setTitleTest(){
 
