@@ -30,16 +30,15 @@ public class LanguageTest {
     private FilmRepository filmRepository;
     @Mock
     private LanguageRepository languageRepository;
-    @Mock
-    private ReviewRepository reviewRepository; //Creating a fake version of
+    //@Mock
+    //private ReviewRepository reviewRepository; //Creating a fake version of
 
     @BeforeEach
-//creating an instance of our DB with no data
+////creating an instance of our DB with no data
     void Setup(){
         sakilaDatabaseApplication = new SakilaDatabaseApplication(addressRepository,
                 actorRepository,categoryRepository,
-                cityRepository, countryRepository, filmRepository, languageRepository,
-                reviewRepository);
+                cityRepository, countryRepository, filmRepository, languageRepository);
     }
     @Test
     void setNameTest(){
@@ -50,20 +49,20 @@ public class LanguageTest {
     }
     @Test
     void getIDTest(){
-        Language testName = new Language();
+       Language testName = new Language();
         assertEquals(0, testName.getLanguage_id(),
-                "The Expected ID and the introduced data is not the same");
-    }
-    /*@Test
-    public void getGetMappingTest(){
-        Language testName1 = new Language("Spanish");
-        Language testName2 = new Language("Polish");
-        List<Language> languageList= new ArrayList<>();
-        languageList.add(testName1);
-        languageList.add(testName2);
-        when(sakilaDatabaseApplication.getAllLanguages()).thenReturn(languageList);
+               "The Expected ID and the introduced data is not the same");
+  }
+ /*@Test
+   public void getGetMappingTest(){
+       Language testName1 = new Language("Spanish");
+       Language testName2 = new Language("Polish");
+       List<Language> languageList= new ArrayList<>();
+       languageList.add(testName1);
+      languageList.add(testName2);
+      when(sakilaDatabaseApplication.getAllLanguages()).thenReturn(languageList);
         Assertions.assertEquals(languageList, sakilaDatabaseApplication.getAllLanguages(),
-                "The Expected list and the introduced data is not the same");
-    }*/
 
+              "The Expected list and the introduced data is not the same");
+   }*/
 }

@@ -1,4 +1,4 @@
-package com.example.tsi.carlos.picon.demo;
+/*package com.example.tsi.carlos.picon.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,3 +51,4 @@ public class Review {
 
 
 }
+*/

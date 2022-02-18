@@ -34,8 +34,8 @@ public class SakilaDatabaseApplication {
 	private FilmRepository filmRepository;
 	@Autowired
 	private LanguageRepository languageRepository;
-	@Autowired
-	private ReviewRepository reviewRepository;
+	//@Autowired
+	//private ReviewRepository reviewRepository;
 
 	private String save ="save";
 
@@ -45,8 +45,7 @@ public class SakilaDatabaseApplication {
 									 CityRepository cityRepository,
 									 CountryRepository countryRepository,
 									 FilmRepository filmRepository,
-									 LanguageRepository languageRepository,
-									 ReviewRepository reviewRepository){
+									 LanguageRepository languageRepository){
 
 
 		this.addressRepository = addressRepository;
@@ -122,7 +121,7 @@ public class SakilaDatabaseApplication {
 
 		return filmRepository.findById(film_id);
 	}
-	@PostMapping ("/AddFilm")
+	@PostMapping ("/AddFilms")
 	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
 										double rental_rate, int length, double replacement_cost, String rating,
 										String special_features){
@@ -172,7 +171,7 @@ public class SakilaDatabaseApplication {
 		languageRepository.deleteById(language_id);
 		return "The language was removed";
 	}
-	@PostMapping("/AddReviews")
+	/*@PostMapping("/AddReviews")
 	public @ResponseBody
 	String addReview(@RequestParam String reviewcol, int film_film_id){
 		Review addReview = new Review(reviewcol, film_film_id);
@@ -184,7 +183,7 @@ public class SakilaDatabaseApplication {
 	Iterable<Review> getAllReview(){
 
 		return reviewRepository.findAll();
-	}
+	}*/
 
 
 	}
