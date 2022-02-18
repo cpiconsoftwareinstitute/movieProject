@@ -44,7 +44,36 @@ public class MockitoTest {
 //                ,reviewRepository
         );
     }
+    /********************Categories**********************/
+    @Test
+    public void testAddCategory(){
+        Category saveCategory = new Category("Test Category");//Post request for Mock DB
+        String expected = "save";//response
+        String actual = sakilaDatabaseApplication.addCategory(saveCategory.getName());
+        ArgumentCaptor<Category>categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        //Verifying that repo has saved instance
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+    /********************Films***************************/
+    @Test
+    public void getGetFilmsMapping(){
+        Film Film_A1 = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
+                7, 15.20, 13, 13.5, "G",
+                "Special scenes");
+        Film Film_A2 = new Film("The Godfather", "The Great Movie Ever", 1972,
+                12, 7.22, 12, 5, "SG",
+                "Interview");
+        List<Film> filmList= new ArrayList<>();
+        filmList.add(Film_A1);
+        filmList.add(Film_A2);
+        when(sakilaDatabaseApplication.getAllFilms()).thenReturn(filmList);
+        Assertions.assertEquals(filmList, sakilaDatabaseApplication.getAllFilms(),
 
+                "The Expected list and the introduced data is not the same");
+    }
+    /********************Languages**********************/
     @Test
     public void testAddLanguage() {
         Language saveLanguage = new Language("Test Language");//Post request for Mock DB
@@ -66,7 +95,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void getGetMappingTest(){
+    public void getGetMappingLanguageTest(){
         Language testName1 = new Language("Spanish");
         Language testName2 = new Language("Polish");
         List<Language> languageList= new ArrayList<>();
@@ -77,6 +106,7 @@ public class MockitoTest {
 
                 "The Expected list and the introduced data is not the same");
     }
+
     /*
     @Test
     public void testGetLanguage(){
@@ -105,16 +135,6 @@ public class MockitoTest {
 //        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
 //    }*/
 
-    @Test
-    public void testAddCategory(){
-        Category saveCategory = new Category("Test Category");//Post request for Mock DB
-        String expected = "save";//response
-        String actual = sakilaDatabaseApplication.addCategory(saveCategory.getName());
-        ArgumentCaptor<Category>categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
-        //Verifying that repo has saved instance
-        verify(categoryRepository).save(categoryArgumentCaptor.capture());
-        categoryArgumentCaptor.getValue();
-        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
-    }
+
 
 }
