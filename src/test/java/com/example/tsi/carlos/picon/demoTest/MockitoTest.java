@@ -44,6 +44,19 @@ public class MockitoTest {
 //                ,reviewRepository
         );
     }
+    /********************Address**********************/
+    @Test
+    public void getGetAddressMapping(){
+        Address Address_A1 = new Address();
+        Address Address_A2 = new Address();
+        List<Address> addressList= new ArrayList<>();
+        addressList.add(Address_A1);
+        addressList.add(Address_A2);
+        when(sakilaDatabaseApplication.getAllAddresses()).thenReturn(addressList);
+        Assertions.assertEquals(addressList, sakilaDatabaseApplication.getAllAddresses(),
+
+                "The Expected list and the introduced data is not the same");
+    }
     /********************Categories**********************/
     @Test
     public void testAddCategory(){
