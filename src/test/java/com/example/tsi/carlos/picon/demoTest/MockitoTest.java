@@ -71,6 +71,19 @@ public class MockitoTest {
     }
     /********************Films***************************/
     @Test
+    public void testGetFilmsById(){
+        Film filmTest = new Film("Un long dimanche de fiançailles",
+                "En 1919, Mathilde a 19 ans. Deux ans plus tôt, son fiancé Manech est parti" +
+                        " sur le front de la Somme. De faux espoirs en certitudes, elle va démêler peu" +
+                        " à peu la vérité sur le sort de Manech et de ses quatre camarades",
+                2004, 7, 15.20, 13, 13.5,
+                "G", "Interviews");
+        when(sakilaDatabaseApplication.getFilmByID(1)).thenReturn(Optional.of(filmTest));
+        Assertions.assertEquals(Optional.of(filmTest),
+                sakilaDatabaseApplication.getFilmByID(1),
+                "This film Id getting test has failed");
+    }
+    @Test
     public void getGetFilmsMapping(){
         Film Film_A1 = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
                 7, 15.20, 13, 13.5, "G",
