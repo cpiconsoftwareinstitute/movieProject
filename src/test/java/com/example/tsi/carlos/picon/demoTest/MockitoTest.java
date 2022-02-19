@@ -44,11 +44,46 @@ public class MockitoTest {
 //                ,reviewRepository
         );
     }
+    /********************Actor*************************/
+    @Test
+    public void getGetActorMapping(){
+        Actor Actor_A1 = new Actor("Michael","J. Fox");
+        Actor Actor_A2 = new Actor("Samuel","L. Jackson");
+        List<Actor> actorList= new ArrayList<>();
+        actorList.add(Actor_A1);
+        actorList.add(Actor_A2);
+        when(sakilaDatabaseApplication.getAllActors()).thenReturn(actorList);
+        Assertions.assertEquals(actorList, sakilaDatabaseApplication.getAllActors(),
+
+                "The Expected list and the introduced data is not the same");
+    }
+
+    @Test
+    public void testAddActor() {
+        Actor saveActor = new Actor("Al", "Pacino");//Post request for Mock DB
+        String expected = "save";//response
+        String actual = sakilaDatabaseApplication.addActor(saveActor.getFirst_name(),
+                saveActor.getLast_name());
+        ArgumentCaptor<Actor> ActorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
+        //Verifying that repo has saved instance
+        verify(actorRepository).save(ActorArgumentCaptor.capture());
+        ActorArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+    @Test
+    public void testGetActorById(){
+        Actor actorTest = new Actor("Robert", "De Niro");
+        when(sakilaDatabaseApplication.getActorByID(1)).thenReturn(Optional.of(actorTest));
+        Assertions.assertEquals(Optional.of(actorTest),
+                sakilaDatabaseApplication.getActorByID(1),
+                "This Language Id getting test has failed");
+    }
+
     /********************Address**********************/
     @Test
     public void getGetAddressMapping(){
-        Address Address_A1 = new Address();
-        Address Address_A2 = new Address();
+        Address Address_A1 = new Address("270 Stepleton Road","BS5 0NW");
+        Address Address_A2 = new Address("221B Baker Street,","NW1 6XE");
         List<Address> addressList= new ArrayList<>();
         addressList.add(Address_A1);
         addressList.add(Address_A2);
