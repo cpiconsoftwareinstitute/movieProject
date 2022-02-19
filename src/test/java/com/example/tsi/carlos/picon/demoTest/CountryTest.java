@@ -1,11 +1,15 @@
 package com.example.tsi.carlos.picon.demoTest;
 
+import com.example.tsi.carlos.picon.demo.City;
 import com.example.tsi.carlos.picon.demo.Country;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CountryTest {
+
+    private Country country = new Country("Peru", "Up to date. 19/02/2022");
+
 
     @Test
     void setCountryTest(){

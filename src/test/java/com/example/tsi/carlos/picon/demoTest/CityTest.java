@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CityTest {
 
+    private City city = new City("Cali");
+
     @Test
     void setCityTest(){
         City testCity = new City();
