@@ -21,7 +21,7 @@ public class Country{
         this.last_update = last_update;
     }
 
-    public int getCategory_id() {
+    public int getCountry_id() {
         return country_id;
     }
 

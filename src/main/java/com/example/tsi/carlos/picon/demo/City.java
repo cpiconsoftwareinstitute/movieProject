@@ -19,7 +19,7 @@ public class City{
 
     }
 
-    public int getCategory_id() {
+    public int getCity_id() {
         return city_id;
     }
 
