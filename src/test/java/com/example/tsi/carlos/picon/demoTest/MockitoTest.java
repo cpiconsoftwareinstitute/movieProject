@@ -145,6 +145,25 @@ public class MockitoTest {
     }
     /********************Films***************************/
     @Test
+    public void testAddFilms() {
+        Film saveFilm = new Film("Interstellar",
+                "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, " +
+                        "Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, " +
+                        "to find a new planet for humans",
+                2014, 7, 15.20, 13, 15.98,
+                "G", "Interviews");//Post request for Mock DB
+        String expected = "save";//response
+        String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(), saveFilm.getDescription(),
+        saveFilm.getRelease_year(), saveFilm.getRental_duration(), saveFilm.getRental_rate(),
+                saveFilm.getLength(), saveFilm.getReplacement_cost(), saveFilm.getRating(),
+                saveFilm.getSpecial_features());
+        ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        //Verifying that repo has saved instance
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
+    }
+    @Test
     public void testGetFilmsById(){
         Film filmTest = new Film("Un long dimanche de fiançailles",
                 "En 1919, Mathilde a 19 ans. Deux ans plus tôt, son fiancé Manech est parti" +
