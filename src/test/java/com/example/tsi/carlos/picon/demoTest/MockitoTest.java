@@ -94,6 +94,19 @@ public class MockitoTest {
     }
     /********************Categories**********************/
     @Test
+    public void getGetCategoriesMapping(){
+        Category Category_A1 = new Category("Drama");
+        Category Category_A2 = new Category("Science Fiction");
+        List<Category> categoryList= new ArrayList<>();
+        categoryList.add(Category_A1);
+        categoryList.add(Category_A2);
+        when(sakilaDatabaseApplication.getAllCategories()).thenReturn(categoryList);
+        Assertions.assertEquals(categoryList, sakilaDatabaseApplication.getAllCategories(),
+
+                "The Expected list and the introduced data is not the same");
+    }
+    /********************Categories**********************/
+    @Test
     public void testAddCategory(){
         Category saveCategory = new Category("Test Category");//Post request for Mock DB
         String expected = "save";//response
