@@ -104,6 +104,32 @@ public class MockitoTest {
         categoryArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
     }
+    /********************Cities************************/
+    @Test
+    public void getGetMappingCitiesTest(){
+        City testCity1 = new City("Bogotá");
+        City testCity2 = new City("Cali");
+        List<City> cityList= new ArrayList<>();
+        cityList.add(testCity1);
+        cityList.add(testCity2);
+        when(sakilaDatabaseApplication.getAllCities()).thenReturn(cityList);
+        Assertions.assertEquals(cityList, sakilaDatabaseApplication.getAllCities(),
+
+                "The Expected list and the introduced data is not the same");
+    }
+    /********************Countries************************/
+    @Test
+    public void getGetMappingCountriesTest(){
+        Country testCountry1 = new Country("Colombia","Updated, 20/02/2022");
+        Country testCountry2 = new Country("Mexico, ","Updated, 20/02/2022");
+        List<Country> countryList= new ArrayList<>();
+        countryList.add(testCountry1);
+        countryList.add(testCountry2);
+        when(sakilaDatabaseApplication.getAllCountries()).thenReturn(countryList);
+        Assertions.assertEquals(countryList, sakilaDatabaseApplication.getAllCountries(),
+
+                "The Expected list and the introduced data is not the same");
+    }
     /********************Films***************************/
     @Test
     public void testGetFilmsById(){
