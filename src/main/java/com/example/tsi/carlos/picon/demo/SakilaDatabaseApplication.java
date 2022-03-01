@@ -205,14 +205,6 @@ public class SakilaDatabaseApplication {
 		final Language updatedLanguage = languageRepository.save(updateLanguage);
 		return updatedLanguage.getName();
 	}
-	/*@PutMapping("/UpdateLanguages/{language_id}")
-	public @ResponseBody
-	String updateLanguage(@PathVariable int language_id, @RequestParam String name) {
-		Optional<Language> updateLanguage= languageRepository.findById(language_id);
-		updateLanguage.setName(name);
-		return "Language updated";
-
-	}*/
 
 	@PostMapping("/AddLanguages")
 	public @ResponseBody

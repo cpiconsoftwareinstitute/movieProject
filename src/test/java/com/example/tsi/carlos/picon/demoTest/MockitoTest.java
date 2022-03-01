@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -262,7 +263,32 @@ public class MockitoTest {
                 sakilaDatabaseApplication.removeLanguage(1),
                 "This delete by Language Id  has failed");
     }
+    /*
 
+    @Test
+    public void updateLanguage() {
+        // given
+        Language updateLingua = new Language("Urdu");
+        when(sakilaDatabaseApplication.updateLanguage(updateLingua.getLanguage_id(), updateLingua.getName())).thenReturn(updateLingua.getName());
+        String actual = sakilaDatabaseApplication.updateLanguage(1,"urdu");
+        Assertions.assertEquals(actual,
+                updateLingua.getName(),
+                "This update by Language Id  has failed");
+    }
+    @Test
+    public void updateLanguage(){
+        Language Lingua = new Language("Urdu");
+        // given - precondition or setup
+        given(languageRepository.save(Lingua)).willReturn(Lingua);
+        Lingua.setLanguage_id(1);
+        Lingua.setName("Spanish");
+        // when -  action or the behaviour that we are going test
+        String updatedLingua = sakilaDatabaseApplication.updateLanguage(1, "Spanish");
+
+        // then - verify the output
+        assertThat(updatedFilm.getL()).isEqualTo(1);
+        assertThat(updatedFilm.getTitle()).isEqualTo("SuperBad");
+    }
 
     /*
         @Test

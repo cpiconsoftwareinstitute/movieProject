@@ -6,9 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -30,5 +28,12 @@ public class LanguageTest {
         assertEquals(0, testID.getLanguage_id(),
                "The Expected ID and the introduced data is not the same");
   }
-
+    private Set<Film> film = new HashSet<>();
+    @Test
+    public void test_GetFilm(){
+        film.add(new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
+                7, 13,  "G"));
+        ;
+    }
+    
 }
