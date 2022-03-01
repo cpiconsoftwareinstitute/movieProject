@@ -150,13 +150,12 @@ public class MockitoTest {
                 "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, " +
                         "Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, " +
                         "to find a new planet for humans",
-                2014, 7, 15.20, 13, 15.98,
-                "G", "Interviews");//Post request for Mock DB
+                2014,1, 7, 13,
+                "G");//Post request for Mock DB
         String expected = "save";//response
         String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(), saveFilm.getDescription(),
-        saveFilm.getRelease_year(), saveFilm.getRental_duration(), saveFilm.getRental_rate(),
-                saveFilm.getLength(), saveFilm.getReplacement_cost(), saveFilm.getRating(),
-                saveFilm.getSpecial_features());
+        saveFilm.getRelease_year(), saveFilm.getLanguage_id(),saveFilm.getRental_duration(),
+                saveFilm.getLength(), saveFilm.getRating());
         ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
         //Verifying that repo has saved instance
         verify(filmRepository).save(filmArgumentCaptor.capture());
@@ -169,8 +168,7 @@ public class MockitoTest {
                 "En 1919, Mathilde a 19 ans. Deux ans plus tôt, son fiancé Manech est parti" +
                         " sur le front de la Somme. De faux espoirs en certitudes, elle va démêler peu" +
                         " à peu la vérité sur le sort de Manech et de ses quatre camarades",
-                2004, 7, 15.20, 13, 13.5,
-                "G", "Interviews");
+                2004, 1,7, 13, "G");
         when(sakilaDatabaseApplication.getFilmByID(1)).thenReturn(Optional.of(filmTest));
         Assertions.assertEquals(Optional.of(filmTest),
                 sakilaDatabaseApplication.getFilmByID(1),
@@ -178,12 +176,10 @@ public class MockitoTest {
     }
     @Test
     public void getGetFilmsMapping(){
-        Film Film_A1 = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
-                7, 15.20, 13, 13.5, "G",
-                "Special scenes");
-        Film Film_A2 = new Film("The Godfather", "The Great Movie Ever", 1972,
-                12, 7.22, 12, 5, "SG",
-                "Interview");
+        Film Film_A1 = new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
+                7, 13, "G");
+        Film Film_A2 = new Film("The Godfather", "The Great Movie Ever", 1972, 1,
+                12, 12, "SG");
         List<Film> filmList= new ArrayList<>();
         filmList.add(Film_A1);
         filmList.add(Film_A2);
@@ -212,7 +208,16 @@ public class MockitoTest {
                 sakilaDatabaseApplication.getLanguageByID(1),
                 "This Language Id getting test has failed");
     }
-
+/*
+    @Test
+    public void testDeleteLanguageById(){
+        Language languageTest = new Language("English");
+        when(sakilaDatabaseApplication.removeLanguage(1)).thenReturn(null);
+        Assertions.assertEquals(Optional.of(languageTest),
+                sakilaDatabaseApplication.getLanguageByID(1),
+                "This Language Id getting test has failed");
+    }
+*/
     @Test
     public void getGetMappingLanguageTest(){
         Language testName1 = new Language("Spanish");

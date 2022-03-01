@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name="actor")
+@Table(name="actor")
 public class Actor{
 
     @Id
@@ -18,9 +18,9 @@ public class Actor{
     private String first_name;
     private String last_name;
 
-    /*@ManyToMany(mappedBy = "actor", fetch = FetchType.LAZY)
-    @JsonIgnore // to stop files from infinity ignoring
-    private Set<Film> film = new HashSet<>();*/
+    @ManyToMany(mappedBy = "actor", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Film> film = new HashSet<>();
 
 
 
@@ -34,16 +34,14 @@ public class Actor{
     public int getActor_id() {
         return actor_id;
     }
-    /*
-    public Set<Film> getFilms()
-    {
+
+    //needed to Many-to-Many mapping
+    public Set<Film> getFilm() {
         return film;
     }
-
-    public void setFilms(Set<Film> films)
-    {
-        this.film = film;
-    }*/
+    public void setFilm(Set<Film> films) {
+        this.film = films;
+    }
     /* Setter and Getter:  first name*/
 
     public void setFirst_name(String first_name) {
@@ -55,7 +53,7 @@ public class Actor{
         return first_name;
     }
 
-    /* Setter and Getter:  last name*/
+
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;

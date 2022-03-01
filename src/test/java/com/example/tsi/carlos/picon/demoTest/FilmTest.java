@@ -8,9 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilmTest {
 
-    private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992,
-            7, 15.20, 13, 13.5, "G",
-            "Special scenes");
+    private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
+            7, 13,  "G");
     @Test
     void getIDTest() {
         Film testID = new Film();
@@ -44,23 +43,9 @@ public class FilmTest {
                 "The Expected result and the introduced data is not the same");
     }
 
-    @Test
-    void setRental_duration(){
 
-        Film testRental_duration = new Film();
-        testRental_duration.setRental_duration(7);
-        assertEquals(7, testRental_duration.getRental_duration(),
-                "The Expected result and the introduced data is not the same");
-    }
 
-    @Test
-        void setRental_rate(){
 
-        Film testRental_rate = new Film();
-        testRental_rate.setRental_rate(15.20);
-        assertEquals(15.20, testRental_rate.getRental_rate(),
-                "The Expected result and the introduced data is not the same");
-    }
 
     @Test
     void setLength(){
@@ -70,14 +55,7 @@ public class FilmTest {
         assertEquals(13, testLength.getLength(),
                 "The Expected result and the introduced data is not the same");
     }
-    @Test
-    void setReplacement_cost(){
 
-        Film testReplacement_cost = new Film();
-        testReplacement_cost.setReplacement_cost(13.5);
-        assertEquals(13.5, testReplacement_cost.getReplacement_cost(),
-                "The Expected result and the introduced data is not the same");
-    }
 
     @Test
     void setRating(){
@@ -88,12 +66,5 @@ public class FilmTest {
                 "The Expected result and the introduced data is not the same");
     }
 
-    @Test
-    void setSpecial_features(){
 
-        Film testSpecial_features = new Film();
-        testSpecial_features.setSpecial_features("Special scenes");
-        assertEquals("Special scenes", testSpecial_features.getSpecial_features(),
-                "The Expected result and the introduced data is not the same");
-    }
 }

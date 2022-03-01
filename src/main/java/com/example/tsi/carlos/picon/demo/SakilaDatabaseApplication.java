@@ -11,6 +11,7 @@ import software.amazon.awssdk.regions.Region;
 
 
 
+
 import java.util.Base64;
 
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 @SpringBootApplication
 @RestController
 @RequestMapping("/Homepage")
+@CrossOrigin(origins = "http://localhost:3000")
 public class SakilaDatabaseApplication {
 
 	@Autowired
@@ -122,12 +124,10 @@ public class SakilaDatabaseApplication {
 		return filmRepository.findById(film_id);
 	}
 	@PostMapping ("/AddFilms")
-	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
-										double rental_rate, int length, double replacement_cost, String rating,
-										String special_features){
-		Film addFilm = new Film(title, description, release_year, rental_duration,
-				rental_rate,length,replacement_cost, rating,
-				special_features);
+	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int language_id,
+										int rental_duration, int length, String rating){
+		Film addFilm = new Film(title, description, release_year, language_id, rental_duration
+				,length, rating);
 		filmRepository.save(addFilm);
 		return save;
 	}
@@ -165,6 +165,8 @@ public class SakilaDatabaseApplication {
 	Iterable<Language> getAllLanguages(){
 		return languageRepository.findAll();
 	}
+
+
 	@DeleteMapping("/DeleteLanguages/{language_id}")
 	public @ResponseBody
 	String removeLanguage(@PathVariable int language_id){

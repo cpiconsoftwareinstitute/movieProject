@@ -1,17 +1,24 @@
 package com.example.tsi.carlos.picon.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
+@Table(name ="language")
 public class Language{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int language_id;
+
+    //Setting up many to many with language category
+    @OneToMany
+    @JoinColumn(name ="language_id",insertable = false,updatable = false)
+    @JsonIgnore
+    private Set<Film> film;
 
     private String name;
 
@@ -33,6 +40,13 @@ public class Language{
         return name;
     }
 
+    public Set<Film>getFilm(){
+        return film;
+    }
+
+    public void setFilm(Set<Film> film) {
+        this.film = film;
+    }
     public Language(){
 
     }

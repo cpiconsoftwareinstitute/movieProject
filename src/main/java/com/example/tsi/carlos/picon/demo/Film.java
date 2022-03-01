@@ -1,40 +1,57 @@
 package com.example.tsi.carlos.picon.demo;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Table(name = "film")
 @Entity
 public class Film{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int film_id;
 
     private String title;
     private String description;
     private int release_year;
+    private int language_id;
     private int rental_duration;
-    private double rental_rate;
     private int length;
-    private double replacement_cost;
     private String rating;
-    private String special_features;
+    //Needed to add ManyToOne connection to get language information
+    @ManyToOne
+    @JoinColumn(name ="language_id", insertable = false, updatable = false)
+    private Language language;
 
-    public Film(String title, String description, int release_year, int rental_duration,
-                double rental_rate, int length, double replacement_cost, String rating,
-                String special_features){
+    public Film(String title, String description, int release_year, int language_id, int rental_duration,
+                 int length, String rating){
+
         this.title = title;
         this.description=description;
         this.release_year=release_year;
+        this.language_id = language_id;
         this.rental_duration=rental_duration;
-        this.rental_rate=rental_rate;
         this.length=length;
-        this.replacement_cost=replacement_cost;
         this.rating=rating;
-        this.special_features=special_features;
 
+    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "film_actor",
+            joinColumns = {
+                    @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "actor_id", referencedColumnName = "actor_id",
+                            nullable = false, updatable = false)})
+    private Set<Actor> actor = new HashSet<>();
+
+    public Set<Actor> getActor() {
+        return actor;
+    }
+
+    public void setActor(Set<Actor> actor) {
+        this.actor = actor;
     }
 
     public Film(){
@@ -45,8 +62,16 @@ public class Film{
         return film_id;
     }
 
+    public int getLanguage_id() {
+        return language_id;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setLanguage_id(int language_id) {
+        this.language_id = language_id;
     }
 
     public void setTitle(String title) {
@@ -77,13 +102,6 @@ public class Film{
         this.rental_duration = rental_duration;
     }
 
-    public double getRental_rate() {
-        return rental_rate;
-    }
-
-    public void setRental_rate(double rental_rate) {
-        this.rental_rate = rental_rate;
-    }
 
     public int getLength() {
         return length;
@@ -93,13 +111,6 @@ public class Film{
         this.length = length;
     }
 
-    public double getReplacement_cost() {
-        return replacement_cost;
-    }
-
-    public void setReplacement_cost(double replacement_cost) {
-        this.replacement_cost = replacement_cost;
-    }
 
     public String getRating() {
         return rating;
@@ -109,11 +120,13 @@ public class Film{
         this.rating = rating;
     }
 
-    public String getSpecial_features() {
-        return special_features;
+
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setSpecial_features(String special_features) {
-        this.special_features = special_features;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
+
 }
