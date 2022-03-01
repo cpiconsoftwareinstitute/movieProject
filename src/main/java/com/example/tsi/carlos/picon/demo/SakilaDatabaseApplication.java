@@ -1,5 +1,6 @@
 package com.example.tsi.carlos.picon.demo;
 
+import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -65,12 +66,15 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);
 	}
+	/********************Address**********************/
 	@GetMapping("/AllAddresses")
 	public @ResponseBody
 	Iterable<Address> getAllAddresses(){
 
 		return addressRepository.findAll();
 	}
+	/********************Actor*************************/
+
 	@GetMapping("/AllActors")
 	public @ResponseBody
 	Iterable<Actor> getAllActors(){
@@ -90,6 +94,23 @@ public class SakilaDatabaseApplication {
 
 		return actorRepository.findById(actor_id);
 	}
+	@DeleteMapping("/DeleteActors/{actor_id}")
+	public @ResponseBody
+	String removeActor(@PathVariable int actor_id){
+		actorRepository.deleteById(actor_id);
+		return "The actor was removed";
+	}
+	@PutMapping("/updateActor/{actor_id}")
+	public @ResponseBody
+	String updateActor(@PathVariable int actor_id, @RequestParam String first_name, String last_name){
+		Actor updateActor= actorRepository.findById(actor_id)
+				.orElseThrow(() ->new ResourceNotFoundException("Actor ID not found"));
+		updateActor.setFirst_name(first_name);
+		updateActor.setLast_name(last_name);
+		final Actor updatedActor = actorRepository.save(updateActor);
+		return updatedActor.getFirst_name() + updatedActor.getLast_name();
+	}
+	/********************Categories**********************/
 	@PostMapping("/AddCategories")
 	public @ResponseBody
 	String addCategory(@RequestParam String name){
@@ -103,19 +124,21 @@ public class SakilaDatabaseApplication {
 
 		return categoryRepository.findAll();
 	}
-
+	/********************Cities************************/
 	@GetMapping("/AllCities")
 	public @ResponseBody
 	Iterable<City> getAllCities(){
 
 		return cityRepository.findAll();
 	}
+	/********************Countries************************/
 	@GetMapping("/AllCountries")
 	public @ResponseBody
 	Iterable<Country> getAllCountries(){
 
 		return countryRepository.findAll();
 	}
+	/********************Films************************/
 
 	@GetMapping("/OneFilm/{film_id}")
 	public @ResponseBody
@@ -137,11 +160,50 @@ public class SakilaDatabaseApplication {
 
 		return filmRepository.findAll();
 	}
+	@DeleteMapping("/DeleteFilms/{films_id}")
+	public @ResponseBody
+	String removeFilm(@PathVariable int films_id){
+		filmRepository.deleteById(films_id);
+		return "The film was removed";
+	}
+		@PutMapping("/updateFilms/{film_id}")
+	public @ResponseBody
+	String updateFilm(@PathVariable int film_id, @RequestParam String title, String description,
+					  int release_year, int language_id,
+					  int rental_duration, int length, String rating){
+		Film updateFilm= filmRepository.findById(film_id)
+				.orElseThrow(() ->new ResourceNotFoundException("Film ID not found"));
+		    updateFilm.setTitle(title);
+		    updateFilm.setDescription(description);
+			updateFilm.setRelease_year(release_year);
+			updateFilm.setLanguage_id(language_id);
+			updateFilm.setRental_duration(rental_duration);
+			updateFilm.setLength(length);
+			updateFilm.setRating(rating);
+		final Film updatedFilm = filmRepository.save(updateFilm);
+		return updatedFilm.getTitle() + updatedFilm.getDescription() +
+				updatedFilm.getRelease_year() + updatedFilm.getLanguage_id() +
+				updatedFilm.getRental_duration() + updatedFilm.getLength() +
+				updatedFilm.getRating();
+	}
+	/********************Languages**********************/
+
 	@GetMapping("/OneLanguage/{language_id}")
 	public @ResponseBody
 	Optional<Language> getLanguageByID(@PathVariable int language_id){
 
 		return languageRepository.findById(language_id);
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/updateLanguage/{language_id}")
+	public @ResponseBody
+	String updateLanguage(@PathVariable int language_id, @RequestParam String name){
+		Language updateLanguage = languageRepository.findById(language_id)
+				.orElseThrow(() ->new ResourceNotFoundException("Language ID not found"));
+		updateLanguage.setName(name);
+		final Language updatedLanguage = languageRepository.save(updateLanguage);
+		return updatedLanguage.getName();
 	}
 	/*@PutMapping("/UpdateLanguages/{language_id}")
 	public @ResponseBody
