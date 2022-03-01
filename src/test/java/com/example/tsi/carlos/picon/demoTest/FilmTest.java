@@ -49,7 +49,14 @@ public class FilmTest {
     }
 
 
+    @Test
+    void setLanguage_idTest(){
 
+        Film testLanguage_id = new Film();
+        testLanguage_id.setLanguage_id(1);
+        assertEquals(1, testLanguage_id.getLanguage_id(),
+                "The Expected result and the introduced data is not the same");
+    }
 
 
     @Test
@@ -60,7 +67,14 @@ public class FilmTest {
         assertEquals(13, testLength.getLength(),
                 "The Expected result and the introduced data is not the same");
     }
+    @Test
+    void setRental_Duration(){
 
+        Film testRental_duration = new Film();
+        testRental_duration.setRental_duration(10);
+        assertEquals(10, testRental_duration.getRental_duration(),
+                "The Expected result and the introduced data is not the same");
+    }
 
     @Test
     void setRating(){
@@ -77,5 +91,14 @@ public class FilmTest {
         assertEquals(actor,film.getActor(),"Get/Set Actor method is not working");
 
     }
+
+    /*@Test
+    void setLanguage(){
+
+        Film testLanguage = new Film();
+        testLanguage.setLanguage("Urdu");
+        assertEquals("Urdu", testLanguage.getLanguage(),
+                "The Expected result and the introduced data is not the same");
+    }*/
 
 }
