@@ -31,9 +31,11 @@ public class LanguageTest {
     private Set<Film> film = new HashSet<>();
     @Test
     public void test_GetFilm(){
+        Language language = new Language("Urdu");
         film.add(new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
                 7, 13,  "G"));
-        ;
+        language.setFilm(film);
+        assertEquals(film,language.getFilm(),"Get/Set film method is not working");
     }
-    
+
 }
