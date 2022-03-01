@@ -1,6 +1,8 @@
 package com.example.tsi.carlos.picon.demoTest;
 
-
+import java.util.HashSet;
+import java.util.Set;
+import com.example.tsi.carlos.picon.demo.Actor;
 import com.example.tsi.carlos.picon.demo.Film;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,9 @@ public class FilmTest {
 
     private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
             7, 13,  "G");
+
+
+    private Set<Actor> actor = new HashSet<>();
     @Test
     void getIDTest() {
         Film testID = new Film();
@@ -65,6 +70,12 @@ public class FilmTest {
         assertEquals("G", testRating.getRating(),
                 "The Expected result and the introduced data is not the same");
     }
+    @Test
+    public void test_getActor(){
+        actor.add(new Actor("Al","Pacino"));
+        film.setActor(actor);
+        assertEquals(actor,film.getActor(),"Get/Set Actor method is not working");
 
+    }
 
 }
