@@ -2,7 +2,12 @@ package com.example.tsi.carlos.picon.demoTest;
 
 import com.example.tsi.carlos.picon.demo.Actor;
 
+import com.example.tsi.carlos.picon.demo.Film;
+import com.example.tsi.carlos.picon.demo.Language;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,5 +38,13 @@ public class ActorTest {
         assertEquals("Caan", testLName.getLast_name(),
                 "The Expected result and the introduced data is not the same");
 
+    }
+    private Set<Film> film = new HashSet<>();
+    public void test_GetFilm(){
+        Actor actor = new Actor("Al", "Pacino");
+        film.add(new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
+                7, 13,  "G"));
+        actor.setFilm(film);
+        assertEquals(film,actor.getFilm(),"Get/Set film method is not working");
     }
 }
