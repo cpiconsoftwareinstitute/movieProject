@@ -95,10 +95,9 @@ public class FilmTest {
 
     @Test
     void setLanguage(){
-
-        Language testLanguage = new Language();
-        testLanguage.setName("Urdu");
-        assertEquals("Urdu", testLanguage.getName(),
+        Language lingua = new Language("Urdu");
+        film.setLanguage(lingua);
+        assertEquals("Urdu", lingua.getName(),
                 "The Expected result and the introduced data is not the same");
     }
 
