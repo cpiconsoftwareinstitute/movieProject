@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import com.example.tsi.carlos.picon.demo.Actor;
 import com.example.tsi.carlos.picon.demo.Film;
+import com.example.tsi.carlos.picon.demo.Language;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -92,13 +93,13 @@ public class FilmTest {
 
     }
 
-    /*@Test
+    @Test
     void setLanguage(){
 
-        Film testLanguage = new Film();
-        testLanguage.setLanguage("Urdu");
-        assertEquals("Urdu", testLanguage.getLanguage(),
+        Language testLanguage = new Language();
+        testLanguage.setName("Urdu");
+        assertEquals("Urdu", testLanguage.getName(),
                 "The Expected result and the introduced data is not the same");
-    }*/
+    }
 
 }
