@@ -131,7 +131,15 @@ public class MockitoTest {
         categoryArgumentCaptor.getValue();
         Assertions.assertEquals(expected, actual, "Data d=hasnt been added to mock");
     }
-
+    @Test
+    public void deleteCategory() {
+        // given
+        Category deleteCategory = new Category("Musical");
+        String actual = sakilaDatabaseApplication.removeLanguage(deleteCategory.getCategory_id());
+        Assertions.assertEquals(actual,
+                sakilaDatabaseApplication.removeCategory(1),
+                "This delete by Language Id  has failed");
+    }
     /********************Cities************************/
     @Test
     public void getGetMappingCitiesTest() {

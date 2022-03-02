@@ -124,6 +124,12 @@ public class SakilaDatabaseApplication {
 
 		return categoryRepository.findAll();
 	}
+	@DeleteMapping("/DeleteCategories/{category_id}")
+	public @ResponseBody
+	String removeCategory(@PathVariable int category_id){
+		categoryRepository.deleteById(category_id);
+		return "The language was removed";
+	}
 	/********************Cities************************/
 	@GetMapping("/AllCities")
 	public @ResponseBody
