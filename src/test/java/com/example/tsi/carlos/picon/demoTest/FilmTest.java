@@ -59,7 +59,14 @@ public class FilmTest {
         assertEquals(1, testLanguage_id.getLanguage_id(),
                 "The Expected result and the introduced data is not the same");
     }
+    @Test
+    void setCategory_idTest(){
 
+        Film testCategory_id = new Film();
+        testCategory_id.setCategory_id(1);
+        assertEquals(1, testCategory_id.getCategory_id(),
+                "The Expected result and the introduced data is not the same");
+    }
 
     @Test
     void setLength(){
