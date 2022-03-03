@@ -24,6 +24,9 @@ public class Film{
     @ManyToOne
     @JoinColumn(name ="language_id", insertable = false, updatable = false)
     private Language language;
+    @ManyToOne
+    @JoinColumn(name ="category_id", insertable = false, updatable = false)
+    private Category category ;
 
     public Film(String title, String description, int release_year, int language_id, int rental_duration,
                  int length, String rating, int category_id){
@@ -126,14 +129,23 @@ public class Film{
     public int getCategory_id() {
         return category_id;
     }
+
     public Language getLanguage() {
         return language;
     }
-
     public void setLanguage(Language language) {
         this.language = language;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
     public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 }

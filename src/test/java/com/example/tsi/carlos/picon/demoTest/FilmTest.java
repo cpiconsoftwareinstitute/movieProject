@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FilmTest {
 
     private Film film = new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
-            7, 13,  "G", 1);
+            7, 13,  "G",1);
 
 
     private Set<Actor> actor = new HashSet<>();
