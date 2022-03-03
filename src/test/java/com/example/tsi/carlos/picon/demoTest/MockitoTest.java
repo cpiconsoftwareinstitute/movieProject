@@ -176,11 +176,11 @@ public class MockitoTest {
                         "Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, " +
                         "to find a new planet for humans",
                 2014, 1, 7, 13,
-                "G");//Post request for Mock DB
+                "G", 1);//Post request for Mock DB
         String expected = "save";//response
         String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(), saveFilm.getDescription(),
                 saveFilm.getRelease_year(), saveFilm.getLanguage_id(), saveFilm.getRental_duration(),
-                saveFilm.getLength(), saveFilm.getRating());
+                saveFilm.getLength(), saveFilm.getRating(), saveFilm.getCategory_id());
         ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
         //Verifying that repo has saved instance
         verify(filmRepository).save(filmArgumentCaptor.capture());
@@ -195,7 +195,7 @@ public class MockitoTest {
                         "Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, " +
                         "to find a new planet for humans",
                 2014, 1, 7, 13,
-                "G");
+                "G", 1);
         String actual = sakilaDatabaseApplication.removeFilm(deleteFilm.getFilm_id());
         Assertions.assertEquals(actual,
                 sakilaDatabaseApplication.removeFilm(1),
@@ -206,7 +206,7 @@ public class MockitoTest {
                 "En 1919, Mathilde a 19 ans. Deux ans plus tôt, son fiancé Manech est parti" +
                         " sur le front de la Somme. De faux espoirs en certitudes, elle va démêler peu" +
                         " à peu la vérité sur le sort de Manech et de ses quatre camarades",
-                2004, 1, 7, 13, "G");
+                2004, 1, 7, 13, "G", 1);
         when(sakilaDatabaseApplication.getFilmByID(1)).thenReturn(Optional.of(filmTest));
         Assertions.assertEquals(Optional.of(filmTest),
                 sakilaDatabaseApplication.getFilmByID(1),
@@ -216,9 +216,9 @@ public class MockitoTest {
     @Test
     public void getGetFilmsMapping() {
         Film Film_A1 = new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
-                7, 13, "G");
+                7, 13, "G", 1);
         Film Film_A2 = new Film("The Godfather", "The Great Movie Ever", 1972, 1,
-                12, 12, "SG");
+                12, 12, "SG", 1);
         List<Film> filmList = new ArrayList<>();
         filmList.add(Film_A1);
         filmList.add(Film_A2);

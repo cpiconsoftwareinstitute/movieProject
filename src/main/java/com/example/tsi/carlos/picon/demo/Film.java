@@ -19,13 +19,14 @@ public class Film{
     private int rental_duration;
     private int length;
     private String rating;
+    private int category_id;
     //Needed to add ManyToOne connection to get language information
     @ManyToOne
     @JoinColumn(name ="language_id", insertable = false, updatable = false)
     private Language language;
 
     public Film(String title, String description, int release_year, int language_id, int rental_duration,
-                 int length, String rating){
+                 int length, String rating, int category_id){
 
         this.title = title;
         this.description=description;
@@ -34,6 +35,7 @@ public class Film{
         this.rental_duration=rental_duration;
         this.length=length;
         this.rating=rating;
+        this.category_id=category_id;
 
     }
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -121,7 +123,9 @@ public class Film{
         this.rating = rating;
     }
 
-
+    public int getCategory_id() {
+        return category_id;
+    }
     public Language getLanguage() {
         return language;
     }
@@ -130,4 +134,6 @@ public class Film{
         this.language = language;
     }
 
+    public void setCategory_id(int category_id) {
+    }
 }

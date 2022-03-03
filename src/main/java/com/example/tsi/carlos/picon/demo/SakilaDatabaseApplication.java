@@ -111,6 +111,17 @@ public class SakilaDatabaseApplication {
 		return updatedActor.getFirst_name() + updatedActor.getLast_name();
 	}
 	/********************Categories**********************/
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/updateCategory/{category_id}")
+	public @ResponseBody
+	String updateCategory(@PathVariable int category_id, @RequestParam String name){
+		Category updateCategory = categoryRepository.findById(category_id)
+				.orElseThrow(() ->new ResourceNotFoundException("Category ID not found"));
+		updateCategory.setName(name);
+		final Category updatedCategory = categoryRepository.save(updateCategory);
+		return updatedCategory.getName();
+	}
+
 	@PostMapping("/AddCategories")
 	public @ResponseBody
 	String addCategory(@RequestParam String name){
@@ -154,9 +165,9 @@ public class SakilaDatabaseApplication {
 	}
 	@PostMapping ("/AddFilms")
 	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int language_id,
-										int rental_duration, int length, String rating){
+										int rental_duration, int length, String rating, int category_id){
 		Film addFilm = new Film(title, description, release_year, language_id, rental_duration
-				,length, rating);
+				,length, rating, category_id);
 		filmRepository.save(addFilm);
 		return save;
 	}
@@ -176,7 +187,7 @@ public class SakilaDatabaseApplication {
 	public @ResponseBody
 	String updateFilm(@PathVariable int film_id, @RequestParam String title, String description,
 					  int release_year, int language_id,
-					  int rental_duration, int length, String rating){
+					  int rental_duration, int length, String rating, int category_id){
 		Film updateFilm= filmRepository.findById(film_id)
 				.orElseThrow(() ->new ResourceNotFoundException("Film ID not found"));
 		    updateFilm.setTitle(title);
@@ -186,6 +197,7 @@ public class SakilaDatabaseApplication {
 			updateFilm.setRental_duration(rental_duration);
 			updateFilm.setLength(length);
 			updateFilm.setRating(rating);
+			updateFilm.setCategory_id(category_id);
 		final Film updatedFilm = filmRepository.save(updateFilm);
 		return updatedFilm.getTitle() + updatedFilm.getDescription() +
 				updatedFilm.getRelease_year() + updatedFilm.getLanguage_id() +

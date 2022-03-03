@@ -43,7 +43,7 @@ public class ActorTest {
     @Test
     public void test_getActor(){
         film.add(new Film("Vanilla Sky", "The Best Movie Ever", 1992, 1,
-                7, 13,  "G"));
+                7, 13,  "G", 1));
         actor.setFilm(film);
         assertEquals(film,actor.getFilm(),"Get/Set Actor method is not working");
 
