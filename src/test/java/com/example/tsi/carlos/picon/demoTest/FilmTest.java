@@ -3,6 +3,7 @@ package com.example.tsi.carlos.picon.demoTest;
 import java.util.HashSet;
 import java.util.Set;
 import com.example.tsi.carlos.picon.demo.Actor;
+import com.example.tsi.carlos.picon.demo.Category;
 import com.example.tsi.carlos.picon.demo.Film;
 import com.example.tsi.carlos.picon.demo.Language;
 import org.junit.jupiter.api.Test;
@@ -98,6 +99,13 @@ public class FilmTest {
         Language lingua = new Language("Urdu");
         film.setLanguage(lingua);
         assertEquals("Urdu", film.getLanguage().getName(),
+                "The Expected result and the introduced data is not the same");
+    }
+    @Test
+    void setCategory(){
+        Category category = new Category("Musical");
+        film.setCategory(category);
+        assertEquals("Musical", film.getCategory().getName(),
                 "The Expected result and the introduced data is not the same");
     }
 

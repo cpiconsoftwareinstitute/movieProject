@@ -249,7 +249,25 @@ public class MockitoTest {
                 sakilaDatabaseApplication.getLanguageByID(1),
                 "This Language Id getting test has failed");
     }
+    /*
+    @Test
+    public void testUpdateLanguage() {
+        Language updateLingua = new Language("Urdu");
+        sakilaDatabaseApplication.addLanguage(updateLingua.getName());
 
+        when(sakilaDatabaseApplication.
+                updateLanguage(1, updateLingua.getName())).thenReturn(updateLingua.getName());
+        String name1 = sakilaDatabaseApplication.updateLanguage(1, "Spanish");
+
+        /*given(languageRepository.findById(lingua.getLanguage_id())).willReturn(Optional.of(lingua));
+
+        ArgumentCaptor<Language> languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
+
+        verify(languageRepository).findById(lingua.getLanguage_id());
+        Language capturedLanguage = languageArgumentCaptor.getValue();
+
+        Assertions.assertEquals(updateLingua.getName(), name1, "good");
+    }*/
     /*@Test
     public void testUpdateLanguage() {
         Language updateLanguage = new Language("Test Language");//Post request for Mock DB
