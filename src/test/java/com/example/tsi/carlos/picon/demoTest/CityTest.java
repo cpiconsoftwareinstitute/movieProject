@@ -16,11 +16,11 @@ public class CityTest {
         assertEquals("Bogotá", testCity.getCity(),
                 "The Expected result and the introduced data is not the same");
     }
-    /*
+
     @Test
     void getIDTest(){
         City testID = new City();
         assertEquals(0, testID.getCity_id(),
                 "The Expected ID and the introduced data is not the same");
-    }*/
+    }
 }
