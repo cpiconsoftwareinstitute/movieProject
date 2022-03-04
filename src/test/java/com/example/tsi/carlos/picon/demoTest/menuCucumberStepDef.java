@@ -235,4 +235,27 @@ public class menuCucumberStepDef {
                 "The Expected list and the introduced data is not the same");
 
     }
+
+    /*****************************Getting************************************/
+    Language deleteLanguage;
+    String actual2;
+    @Given("I want to delete a language")
+    public void deleting_languages() {
+        Setup();
+        deleteLanguage = new Language("Urdu");
+
+    }
+    @When("I introduce an id and I press the delete button")
+    public void press_the_button() {
+        actual2 = sakilaDatabaseApplication.removeLanguage(deleteLanguage.getLanguage_id());
+
+
+    }
+
+    @Then("The data is not in the data base anymore")
+    public void data_disappeared() {
+        Assertions.assertEquals(actual2,
+                sakilaDatabaseApplication.removeLanguage(1),
+                "This delete by Language Id  has failed");
+    }
 }
